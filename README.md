@@ -4,7 +4,7 @@ Sketch-Based 3D Exploration with Stacked Generative Adversarial Networks.
 
 <img src="img/sample.gif" width="500">
 
-## Generated Samples
+## Generated samples
 
 ### Single-category generation
 
@@ -15,5 +15,9 @@ Sketch-Based 3D Exploration with Stacked Generative Adversarial Networks.
 <img src="img/multi-category-generation.png" width="500">
 
 ## Getting started
+
+```
+$ python application.py
+```
 
 ## Requirements
