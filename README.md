@@ -1,5 +1,6 @@
 # pix2vox
-Sketch-Based 3D Exploration with Stacked Generative Adversarial Networks
+[[Demonstration video]](https://maxorange.github.io/pix2vox/)
+Sketch-Based 3D Exploration with Stacked Generative Adversarial Networks.
 
 <img src="img/sample.gif" width="500">
 
