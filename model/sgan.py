@@ -66,7 +66,7 @@ class Generator(object):
             l = linear(label, [n_cls, 4*4*4*nf*8], 'h12', bias=True)
             hl = tf.nn.dropout(tf.nn.elu(l), keep_prob(dropout, train))
 
-            # edge latent code
+            # encode edge
             c = conv3d(edge, [4, 4, 4, 32, nf*8], 'h13', bias=True, stride=1)
             hi = tf.nn.dropout(tf.nn.elu(c), keep_prob(dropout, train))
 
@@ -161,3 +161,58 @@ class Encoder(object):
             f = tf.reshape(h4, [-1, 4*4*nf*4])
             y = linear(f, [4*4*nf*4, n_cls], 'h5', bias=True)
             return h4
+
+class Discriminator(object):
+
+    def __init__(self, n_cls, nz):
+        self.n_cls = n_cls
+        self.nz = nz
+        self.enc = Encoder()
+
+    def __call__(self, x, c, train, nf=16, name="d_voxel", reuse=False):
+        with tf.variable_scope(name, reuse=reuse):
+            shape = x.get_shape().as_list()
+            batch_size = shape[0]
+            
+            if name == 'd_style':
+                nc = 3
+            else:
+                nc = 1
+
+            # add noise
+            x += tf.random_normal(shape)
+            c += tf.random_normal(c.get_shape())
+
+            # encode image
+            hc = self.enc.edge(c, train, self.n_cls, nc=nc, reuse=reuse)
+            hc = tf.reshape(hc, [batch_size, -1])
+
+            # encode voxels
+            u = conv3d(x, [4, 4, 4, nc, nf], 'h1', bias=True, stride=1)
+            hx = lrelu(u)
+
+            u = conv3d(hx, [4, 4, 4, nf, nf*2], 'h2')
+            hx = lrelu(batch_norm(u, train, 'bn2'))
+
+            u = conv3d(hx, [4, 4, 4, nf*2, nf*4], 'h3')
+            hx = lrelu(batch_norm(u, train, 'bn3'))
+
+            u = conv3d(hx, [4, 4, 4, nf*4, nf*8], 'h4')
+            hx = lrelu(batch_norm(u, train, 'bn4'))
+
+            u = conv3d(hx, [4, 4, 4, nf*8, nf*16], 'h5')
+            hx = lrelu(batch_norm(u, train, 'bn5'))
+            hx = tf.reshape(hx, [batch_size, -1])
+
+            # discriminator
+            h = tf.concat([hc, hx], 1)
+            d = linear(h, [h.get_shape().as_list()[-1], 1], 'd', bias=True)
+
+            # classifier
+            y = linear(hx, [hx.get_shape().as_list()[-1], self.n_cls], 'y', bias=True)
+
+            # posterior
+            u = linear(hx, [hx.get_shape().as_list()[-1], self.nz], 'z', bias=True)
+            z = tf.nn.tanh(u)
+
+            return d, y, z
