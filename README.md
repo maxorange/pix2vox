@@ -18,6 +18,7 @@ Sketch-Based 3D Exploration with Stacked Generative Adversarial Networks.
 
 The following python packages are required for running the application. If you are using [anaconda](https://www.continuum.io/), you can easily install VTK5 and PyQt4 (or they may already be installed).
 
+* [binvox-rw-py](https://github.com/dimatura/binvox-rw-py)
 * [numpy](https://github.com/numpy/numpy)
 * [scipy](https://github.com/scipy/scipy)
 * [OpenCV](http://opencv.org/)
