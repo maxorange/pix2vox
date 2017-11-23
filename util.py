@@ -2,6 +2,8 @@ import numpy as np
 import binvox
 import os
 import cv2
+from scipy import ndimage
+from skimage import measure
 
 def read_binvox(fname):
     with open(fname, 'rb') as f:
@@ -33,3 +35,9 @@ def get_name(fname):
     head, tail = os.path.split(fname)
     name, ext = os.path.splitext(tail)
     return name
+
+def extract_mesh(vox):
+    padded = np.pad(vox, 2, mode='constant', constant_values=0.)
+    filtered = ndimage.filters.gaussian_filter(padded, 1., mode='constant', cval=0.)
+    verts, faces, _, _ = measure.marching_cubes_lewiner(filtered, spacing=(0.1, 0.1, 0.1), gradient_direction='ascent')
+    return dict(verts=verts.tolist(), faces=faces.tolist())

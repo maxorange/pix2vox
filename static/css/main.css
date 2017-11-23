@@ -1,0 +1,111 @@
+html {
+    height: 100%;
+}
+
+body {
+    height: 100%;
+}
+
+body:before {
+    display: table;
+    content: "";
+}
+body:after {
+    display: table;
+    clear: both;
+    content: "";
+}
+
+#canvas {
+    display: block;
+    border: 3px solid #34495E;
+    cursor: crosshair;
+}
+
+#viewer {
+    background-color: #202b31;
+    border: 3px solid #34495E;
+}
+
+#viewer img {
+    width: 100%;
+    height: auto;
+}
+
+.sidebar {
+    float: left;
+    height: 100%;
+    overflow-y: scroll;
+    padding: 30px;
+    width: 15%;
+}
+.sidebar::-webkit-scrollbar {
+  display: none;
+}
+.slider.brightness {
+    background-color: #ffffff;
+}
+.slider.brightness {
+    border: 1px solid #bdc3c7;
+}
+
+.contents {
+    background-color: #f4f6f8;
+    float: left;
+    height: 100%;
+    overflow-y: scroll;
+    padding: 30px;
+    width: 85%;
+}
+.contents::-webkit-scrollbar {
+  display: none;
+}
+
+.square-wrapper {
+    position: relative;
+    width: 100%;
+}
+.square-wrapper:before {
+    content:"";
+    display: block;
+    padding-top: 100%;
+}
+.square-wrapper .square {
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+}
+
+.row.my-1 {
+    margin-top: 15px;
+    margin-bottom: 15px;
+}
+.row.my-2 {
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+.row.py-1 {
+    padding-top: 15px;
+    padding-bottom: 15px;
+}
+.row.py-2 {
+    padding-top: 30px;
+    padding-bottom: 30px;
+}
+
+.mb-1 {
+    margin-bottom: 15px;
+}
+.mb-2 {
+    margin-bottom: 30px;
+}
+
+.divider {
+    border-left: 1px solid #bdc3c7;
+    display: inline-block;
+    height: 35px;
+    margin: 0 10px;
+    vertical-align: middle;
+}

@@ -50,6 +50,10 @@ class Model(object):
         style = np.clip(util.tanh2rgb(style), 0, 255)
         self.current_shapes = np.concatenate([voxel, style], -1).astype(np.uint8)
 
+    def generate(self, edge, z, label):
+        feed_dict = {self.edge:edge, self.z:z, self.label:label, self.train:False}
+        return self.sess.run(self.voxel_gen, feed_dict=feed_dict)[0]
+
 class Generator(object):
 
     def voxel(self, z, edge, label, train, nc=1, nf=16, dropout=0.75, name="g_voxel", reuse=False):
@@ -173,7 +177,7 @@ class Discriminator(object):
         with tf.variable_scope(name, reuse=reuse):
             shape = x.get_shape().as_list()
             batch_size = shape[0]
-            
+
             if name == 'd_style':
                 nc = 3
             else:

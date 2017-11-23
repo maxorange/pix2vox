@@ -7,15 +7,6 @@
 6,02828884,bench
 7,02834778,bicycle,bike,wheel,cycle
 8,02843684,birdhouse
-34,02858304,boat
-35,02871439,bookshelf
-36,02876657,bottle
-37,02880940,bowl
-38,02924116,bus,autobus,coach,charabanc,double-decker,jitney,motorbus,motorcoach,omnibus,passenger vehi
-39,02933112,cabinet
-40,02942699,camera,photographic camera
-41,02946921,can,tin,tin can
-42,02954340,cap
 9,02958343,car,auto,automobile,machine,motorcar
 10,02992529,cellular telephone,cellular phone,cellphone,cell,mobile phone
 11,03001627,chair
@@ -25,19 +16,10 @@
 15,03211117,display,video display
 16,03261776,earphone,earpiece,headphone,phone
 17,03325088,faucet,spigot
-43,03337140,file,file cabinet,filing cabinet
-44,03467517,guitar
-45,03513137,helmet
-46,03593526,jar
-47,03624134,knife
-48,03636649,lamp
-49,03642806,laptop,laptop computer
-50,03691459,loudspeaker,speaker,speaker unit,loudspeaker system,speaker system
-51,03710193,mailbox,letter box
 18,03759954,microphone,mike
 19,03761084,microwave,microwave oven
 20,03790512,motorcycle,bike
-21,03797390,mug   
+21,03797390,mug
 22,03928116,piano,pianoforte,forte-piano
 23,03938244,pillow
 24,03948459,pistol,handgun,side arm,shooting iron
@@ -50,6 +32,24 @@
 31,04256520,sofa,couch,lounge
 32,04330267,stove
 33,04379243,table
+34,02858304,boat
+35,02871439,bookshelf
+36,02876657,bottle
+37,02880940,bowl
+38,02924116,bus,autobus,coach,charabanc,double-decker,jitney,motorbus,motorcoach,omnibus,passenger vehi
+39,02933112,cabinet
+40,02942699,camera,photographic camera
+41,02946921,can,tin,tin can
+42,02954340,cap
+43,03337140,file,file cabinet,filing cabinet
+44,03467517,guitar
+45,03513137,helmet
+46,03593526,jar
+47,03624134,knife
+48,03636649,lamp
+49,03642806,laptop,laptop computer
+50,03691459,loudspeaker,speaker,speaker unit,loudspeaker system,speaker system
+51,03710193,mailbox,letter box
 52,04401088,telephone,phone,telephone set
 53,04460130,tower
 54,04468005,train,railroad train

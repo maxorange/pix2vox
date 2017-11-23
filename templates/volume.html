@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset = "utf-8">
+  <title>Canvas</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+  <link href="{{ static_url('css/bootstrap.min.css') }}" rel="stylesheet">
+  <link href="{{ static_url('css/flat-ui.min.css') }}" rel="stylesheet">
+  <link href="{{ static_url('css/main.css') }}" rel="stylesheet">
+  <script type="text/javascript">
+    var categoryWeights = [{% for k, v in labels %}0,{% end %}];
+  </script>
+  <script src="{{ static_url('js/jquery.min.js') }}"></script>
+  <script src="{{ static_url('js/flat-ui.min.js') }}"></script>
+  <script src="{{ static_url('js/three.min.js') }}"></script>
+  <script src="{{ static_url('js/detector.js') }}"></script>
+  <script src="{{ static_url('js/OBJLoader.js') }}"></script>
+  <script src="{{ static_url('js/STLBinaryExporter.js') }}"></script>
+  <script src="{{ static_url('js/TrackballControls.js') }}"></script>
+  <script src="{{ static_url('js/canvas-toBlob.js') }}"></script>
+  <script src="{{ static_url('js/FileSaver.min.js') }}"></script>
+  <script src="{{ static_url('js/utils.js') }}"></script>
+  <script src="{{ static_url('js/canvas.js') }}"></script>
+  <script src="{{ static_url('js/recorder.js') }}"></script>
+  <script src="{{ static_url('js/viewer.js') }}"></script>
+  <script src="{{ static_url('js/application.js') }}"></script>
+</head>
+<body>
+  <div class="sidebar">
+    <div class="row">
+      <div class="col-sm-12">
+        <label><strong>Category weights</strong></label>
+        {% for k, v in labels %}
+        <label>{{ k }}</label>
+        <div data-id="{{ v }}" class="slider category-weights"></div>
+        {% end %}
+      </div>
+    </div>
+  </div>
+  <div class="contents">
+    <div class="row">
+      <div class="col-sm-6 mb-2">
+        <div class="square-wrapper">
+          <div id="canvas" class="square"></div>
+        </div>
+      </div>
+      <div class="col-sm-6 mb-2">
+        <div class="square-wrapper">
+          <div id="viewer" class="square"></div>
+        </div>
+      </div>
+    </div>
+    <div class="form-group row">
+      <label class="col-sm-2" for="lineWidth">Line width</label>
+      <div class="col-sm-4">
+        <input class="form-control" type="number" id="lineWidth" name="lineWidth" value="1" min="1" max="20">
+      </div>
+      <div class="col-sm-6">
+        <div class="input-group">
+          <input type="text" name="fileName" value="model" placeholder="File name" class="form-control">
+          <span class="input-group-btn">
+            <button class="btn btn-default" name="export">Export</button>
+          </span>
+        </div>
+      </div>
+    </div>
+    <div class="form-group row">
+      <label class="col-sm-2" for="">Draw mode</label>
+      <div class="col-sm-4">
+        <label class="radio radio-inline">
+          <input type="radio" data-toggle="radio" name="drawMode" value="depthmap" data-radiocheck-toggle="radio">
+          Depthmap
+        </label>
+        <label class="radio radio-inline">
+          <input type="radio" data-toggle="radio" name="drawMode" value="outline" data-radiocheck-toggle="radio" checked>
+          Outline
+        </label>
+      </div>
+    </div>
+    <div class="form-group row">
+      <label class="col-sm-2" for="">Depth</label>
+      <div class="col-sm-4">
+        <div class="slider brightness"></div>
+      </div>
+    </div>
+    <div class="form-group row">
+      <div class="col-sm-6">
+        <button class="btn btn-primary" name="clear">Clear canvas</button>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
