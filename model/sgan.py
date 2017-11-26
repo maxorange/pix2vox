@@ -178,18 +178,17 @@ class Discriminator(object):
             shape = x.get_shape().as_list()
             batch_size = shape[0]
 
-            if name == 'd_style':
-                nc = 3
-            else:
-                nc = 1
-
             # add noise
             x += tf.random_normal(shape)
             c += tf.random_normal(c.get_shape())
 
             # encode image
-            hc = self.enc.edge(c, train, self.n_cls, nc=nc, reuse=reuse)
-            hc = tf.reshape(hc, [batch_size, -1])
+            if name == 'd_style':
+                hc, _, _ = self.enc.color(c, train, self.n_cls, reuse=reuse)
+                nc = 3
+            else:
+                hc = self.enc.edge(c, train, self.n_cls, reuse=reuse)
+                nc = 1
 
             # encode voxels
             u = conv3d(x, [4, 4, 4, nc, nf], 'h1', bias=True, stride=1)
@@ -209,6 +208,7 @@ class Discriminator(object):
             hx = tf.reshape(hx, [batch_size, -1])
 
             # discriminator
+            hc = tf.reshape(hc, [batch_size, -1])
             h = tf.concat([hc, hx], 1)
             d = linear(h, [h.get_shape().as_list()[-1], 1], 'd', bias=True)
 
