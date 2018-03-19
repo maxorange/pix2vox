@@ -44,15 +44,16 @@ $ pip install qdarkstyle
 
 ## Getting started
 
-1. Install the python packages above.
-2. Download the code from GitHub:
+1. Install the python packages above
+2. Install [Git LSF](https://git-lfs.github.com/) (You need Git LSF to download trained model file)
+3. Download the code from GitHub:
 
 ```
-$ git clone https://github.com/maxorange/pix2vox.git
+$ git lsf clone https://github.com/maxorange/pix2vox.git
 $ cd pix2vox
 ```
 
-3. Run the code:
+4. Run the code:
 
 ```
 $ python application.py
